@@ -1,0 +1,5 @@
+# Временный файл для new.petragarden.ru — тестовая версия сайта.
+# Перед переездом на petragarden.ru заменить на разрешающий вариант
+# и добавить Sitemap.
+User-agent: *
+Disallow: /
