@@ -614,6 +614,46 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
   .msg-btn{width:46px;height:46px}
   .msg-btn svg{width:22px;height:22px}
 }
+
+/* ============ ПРАВКИ ПО МОБИЛЬНОЙ ВЕРСИИ (08.11.2026) ============ */
+:root{--gold-ink:#86662C}
+/* шапка в своём слое: на iOS fixed-шапка перестаёт дрожать при прокрутке */
+.topbar{transform:translateZ(0);will-change:transform;backface-visibility:hidden}
+.brand,.brand small{white-space:nowrap}
+.lang{display:none}                 /* вернуть, когда появится английская версия */
+/* первый экран: запас под шапку, отступы по краям, читаемый текст на фото */
+.hero{padding-top:110px}
+.hero-inner{padding-left:24px;padding-right:24px;padding-bottom:110px}
+.hero h1,.hero p,.hero .eyebrow{text-shadow:0 2px 16px rgba(8,16,14,.5)}
+.hero .eyebrow{color:#F3DDB0}
+.hero-badge{right:104px}
+.hero .eyebrow::before{background:#F3DDB0}
+.hero-shade{background:linear-gradient(180deg,rgba(14,26,24,.55) 0%,rgba(14,26,24,.2) 26%,rgba(14,26,24,.3) 50%,rgba(14,26,24,.82) 100%)}
+/* подписи разделов — крупнее и контрастнее */
+.eyebrow{font-size:.84rem}
+.why-card .n,.thal-card .n,.stop .meta,.resto-points b{color:var(--gold-ink);font-size:.82rem}
+.shot figcaption{font-size:.8rem}
+/* галерея номера: индикатор загрузки */
+.lightbox img{transition:opacity .25s ease;touch-action:pan-y}
+.lightbox.loading img{opacity:.25}
+.lightbox.loading::after{content:"";position:absolute;width:38px;height:38px;border-radius:50%;
+  border:3px solid rgba(253,253,251,.25);border-top-color:var(--gold);animation:lbspin .8s linear infinite}
+@keyframes lbspin{to{transform:rotate(360deg)}}
+@media(max-width:760px){.hero-inner{padding-bottom:56px}}
+@media(max-width:720px){
+  .topbar{padding:12px 18px;transition:none}
+  .brand{font-size:1.02rem}
+  .brand small{font-size:.52rem;letter-spacing:.22em}
+  .burger{font-size:0;gap:0}
+  .hero{padding-top:84px}
+  .hero-inner{padding-left:18px;padding-right:18px}
+  .hero p{font-size:1rem}
+  .eyebrow{font-size:.8rem;letter-spacing:.16em}
+  .hero .eyebrow{font-size:.74rem;letter-spacing:.14em}
+  .reveal{transform:none;transition:opacity .45s ease}
+}
+@media(max-width:640px){.lb-prev,.lb-next{top:auto;bottom:52px;transform:none}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
@@ -700,7 +740,6 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
     <b>85 м</b>
     лестницей сквозь сосны
   </div>
-  <div class="hero-sound">▶ ШУМ ВОЛН · ВКЛЮЧИТЕ ЗВУК</div>
 </section>
 
 <!-- ============ СЦЕНАРИИ ПРОСМОТРА ============ -->
@@ -753,9 +792,9 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
         <picture>
           <source srcset="assets/sea-1.avif" type="image/avif">
           <source srcset="assets/sea-1.webp" type="image/webp">
-          <img src="assets/sea-1.webp" alt="Море и дикий пляж у Petra Garden Beach Hotel" loading="lazy" decoding="async">
+          <img src="assets/sea-1.webp" alt="Море и скала у Petra Garden Beach Hotel" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Море и пляж у подножия отеля</figcaption>
+        <figcaption>Море у подножия скалы</figcaption>
       </figure>
       <figure class="shot">
         <picture>
@@ -769,25 +808,25 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
         <picture>
           <source srcset="assets/exterior-2.avif" type="image/avif">
           <source srcset="assets/exterior-2.webp" type="image/webp">
-          <img src="assets/exterior-2.webp" alt="Территория Petra Garden: белые корпуса, черепица и сосны" loading="lazy" decoding="async">
+          <img src="assets/exterior-2.webp" alt="Корпуса Petra Garden: белые стены, синие ставни и черепица" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Территория и сад</figcaption>
+        <figcaption>Корпуса в греческом стиле</figcaption>
       </figure>
       <figure class="shot">
         <picture>
           <source srcset="assets/hammock-1.avif" type="image/avif">
           <source srcset="assets/hammock-1.webp" type="image/webp">
-          <img src="assets/hammock-1.webp" alt="Гамак в сосновом саду отеля" loading="lazy" decoding="async">
+          <img src="assets/hammock-1.webp" alt="Ужин в саду отеля под гирляндами" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Гамак в саду</figcaption>
+        <figcaption>Вечер в саду под гирляндами</figcaption>
       </figure>
       <figure class="shot">
         <picture>
           <source srcset="assets/sea-2.avif" type="image/avif">
           <source srcset="assets/sea-2.webp" type="image/webp">
-          <img src="assets/sea-2.webp" alt="Чистая вода у дикого пляжа отеля" loading="lazy" decoding="async">
+          <img src="assets/sea-2.webp" alt="Закат над морем у скалы рядом с отелем" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Вода у пляжа</figcaption>
+        <figcaption>Закат у скалы</figcaption>
       </figure>
       <figure class="shot">
         <picture>
@@ -895,12 +934,12 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
     <div class="section-head reveal">
       <div class="eyebrow">Номера</div>
       <h2>Просыпаться под шум сосен</h2>
-      <p>12 категорий: от стандарта с отдельным входом до панорамного люкса на 109 м², где терраса в 81 м² втрое больше самого номера. Для каждой категории показываем общую площадь и отдельно — номер и террасу. Wi-Fi и парковка бесплатные.</p>
+      <p>12 категорий номеров: от уютного стандарта на двоих до панорамных апартаментов с террасой и видом на море. Почти у каждого номера своя терраса. Wi-Fi и парковка бесплатные.</p>
     </div>
     <div class="rooms-grid reveal">
 
       <article class="room">
-        <button class="room-photo" data-room="109" aria-label="Открыть галерею: Панорамный люкс с лаундж-зоной и видом на море">
+        <button class="room-photo" data-room="109" data-shots="8" aria-label="Открыть галерею: Панорамный люкс с лаундж-зоной и видом на море">
           <picture>
             <source srcset="assets/thumbs/room-109-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-109-1.webp" type="image/webp">
@@ -924,7 +963,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="303" aria-label="Открыть галерею: Панорамные апартаменты делюкс с лаундж-зоной и видом на море">
+        <button class="room-photo" data-room="303" data-shots="8" aria-label="Открыть галерею: Панорамные апартаменты делюкс с лаундж-зоной и видом на море">
           <picture>
             <source srcset="assets/thumbs/room-303-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-303-1.webp" type="image/webp">
@@ -948,7 +987,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="301" aria-label="Открыть галерею: Панорамные апартаменты люкс с террасой и видом на парк">
+        <button class="room-photo" data-room="301" data-shots="8" aria-label="Открыть галерею: Панорамные апартаменты люкс с террасой и видом на парк">
           <picture>
             <source srcset="assets/thumbs/room-301-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-301-1.webp" type="image/webp">
@@ -972,7 +1011,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="205" aria-label="Открыть галерею: Двухкомнатные апартаменты с видом на море и отдельным входом">
+        <button class="room-photo" data-room="205" data-shots="8" aria-label="Открыть галерею: Двухкомнатные апартаменты с видом на море и отдельным входом">
           <picture>
             <source srcset="assets/thumbs/room-205-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-205-1.webp" type="image/webp">
@@ -996,7 +1035,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="216" aria-label="Открыть галерею: Двухкомнатные апартаменты с большой террасой и видом на море">
+        <button class="room-photo" data-room="216" data-shots="8" aria-label="Открыть галерею: Двухкомнатные апартаменты с большой террасой и видом на море">
           <picture>
             <source srcset="assets/thumbs/room-216-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-216-1.webp" type="image/webp">
@@ -1020,7 +1059,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="302" aria-label="Открыть галерею: Панорамные апартаменты делюкс с террасой и видом на парк">
+        <button class="room-photo" data-room="302" data-shots="8" aria-label="Открыть галерею: Панорамные апартаменты делюкс с террасой и видом на парк">
           <picture>
             <source srcset="assets/thumbs/room-302-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-302-1.webp" type="image/webp">
@@ -1044,7 +1083,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="104" aria-label="Открыть галерею: Двухкомнатные семейные апартаменты с террасой">
+        <button class="room-photo" data-room="104" data-shots="8" aria-label="Открыть галерею: Двухкомнатные семейные апартаменты с террасой">
           <picture>
             <source srcset="assets/thumbs/room-104-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-104-1.webp" type="image/webp">
@@ -1068,7 +1107,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="204" aria-label="Открыть галерею: Стандарт с террасой и отдельным входом">
+        <button class="room-photo" data-room="204" data-shots="4" aria-label="Открыть галерею: Стандарт с террасой и отдельным входом">
           <picture>
             <source srcset="assets/thumbs/room-204-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-204-1.webp" type="image/webp">
@@ -1092,7 +1131,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="213" aria-label="Открыть галерею: Стандарт с террасой">
+        <button class="room-photo" data-room="213" data-shots="6" aria-label="Открыть галерею: Стандарт с террасой">
           <picture>
             <source srcset="assets/thumbs/room-213-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-213-1.webp" type="image/webp">
@@ -1116,7 +1155,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="102" aria-label="Открыть галерею: Улучшенный номер с террасой и отдельным входом">
+        <button class="room-photo" data-room="102" data-shots="8" aria-label="Открыть галерею: Улучшенный номер с террасой и отдельным входом">
           <picture>
             <source srcset="assets/thumbs/room-102-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-102-1.webp" type="image/webp">
@@ -1140,7 +1179,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="106" aria-label="Открыть галерею: Улучшенный номер с террасой">
+        <button class="room-photo" data-room="106" data-shots="8" aria-label="Открыть галерею: Улучшенный номер с террасой">
           <picture>
             <source srcset="assets/thumbs/room-106-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-106-1.webp" type="image/webp">
@@ -1164,7 +1203,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       </article>
 
       <article class="room">
-        <button class="room-photo" data-room="105" aria-label="Открыть галерею: Семейные апартаменты с кухней">
+        <button class="room-photo" data-room="105" data-shots="8" aria-label="Открыть галерею: Семейные апартаменты с кухней">
           <picture>
             <source srcset="assets/thumbs/room-105-1.avif" type="image/avif">
             <source srcset="assets/thumbs/room-105-1.webp" type="image/webp">
@@ -1188,34 +1227,7 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
 
     </div>
 
-    <!-- ПОЛНЫЙ НОМЕРНОЙ ФОНД -->
-    <div class="fund reveal">
-      <h3 style="font-size:clamp(1.3rem,2.2vw,1.7rem);margin-bottom:8px">Весь номерной фонд</h3>
-      <p style="color:var(--ink-soft);margin-bottom:26px;font-size:.95rem">Площади по обмеру от 16 октября 2026 года: отдельно номер, отдельно терраса и общая.</p>
-      <div class="fund-hint">← таблица листается вбок →</div>
-      <div class="fund-scroll">
-        <table class="fund-table">
-          <thead>
-            <tr><th>Категория</th><th>Номер</th><th>Терраса</th><th>Всего</th><th>Гостей</th><th>В номере</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Панорамный люкс с лаундж-зоной и видом на море <em>109</em></td><td>28 м²</td><td>81 м²</td><td><b>109 м²</b></td><td>3/4</td><td>ТВ, холодильник, кондиционер, чайник, фен, Wi-Fi, кресло, односпальная кровать</td></tr>
-            <tr><td>Панорамные апартаменты делюкс с лаундж-зоной и видом на море <em>303</em></td><td>25 м²</td><td>58 м²</td><td><b>83 м²</b></td><td>4</td><td>ТВ, холодильник, кондиционер, сейф, чайник, микроволновка, стиральная машина, фен, утюг, Wi-Fi, диван</td></tr>
-            <tr><td>Панорамные апартаменты люкс с террасой и видом на парк <em>301</em></td><td>43 м²</td><td>17 м²</td><td><b>60 м²</b></td><td>4/5</td><td>ТВ, холодильник, кондиционер, сейф, чайник, микроволновка, стиральная машина, фен, утюг, Wi-Fi, диван</td></tr>
-            <tr><td>Двухкомнатные апартаменты с террасой, видом на море и отдельным входом <em>205, 206</em></td><td>18 м²</td><td>25 м²</td><td><b>43 м²</b></td><td>3/4</td><td>ТВ, холодильник, кондиционер, чайник, плита, микроволновка, фен, утюг, Wi-Fi, диван</td></tr>
-            <tr><td>Двухкомнатные апартаменты с большой террасой и видом на море <em>215, 216</em></td><td>18 м²</td><td>25 м²</td><td><b>43 м²</b></td><td>3/4</td><td>ТВ, холодильник, кондиционер, чайник, плита, микроволновка, фен, утюг, Wi-Fi, диван</td></tr>
-            <tr><td>Панорамные апартаменты делюкс с террасой и видом на парк <em>302</em></td><td>26 м²</td><td>14 м²</td><td><b>40 м²</b></td><td>4</td><td>ТВ, холодильник, кондиционер, сейф, чайник, микроволновка, стиральная машина, фен, утюг, Wi-Fi, диван</td></tr>
-            <tr><td>Двухкомнатные семейные апартаменты с террасой <em>101, 104</em></td><td>24 м²</td><td>8 м²</td><td><b>32 м²</b></td><td>3/4</td><td>ТВ, холодильник, кондиционер, чайник, микроволновка, плита, фен, утюг, Wi-Fi, диван</td></tr>
-            <tr><td>Стандарт с террасой и отдельным входом <em>201–204, 207–210</em></td><td>13 м²</td><td>10 м²</td><td><b>23 м²</b></td><td>2</td><td>Холодильник, кондиционер, чайник, фен, Wi-Fi</td></tr>
-            <tr><td>Стандарт с террасой <em>211–214, 217–220</em></td><td>13 м²</td><td>10 м²</td><td><b>23 м²</b></td><td>2</td><td>Холодильник, кондиционер, чайник, фен, Wi-Fi</td></tr>
-            <tr><td>Улучшенный номер с террасой и отдельным входом <em>102, 103</em></td><td>17 м²</td><td>5 м²</td><td><b>22 м²</b></td><td>2/4</td><td>Холодильник, кондиционер, чайник, фен, Wi-Fi</td></tr>
-            <tr><td>Улучшенный номер с террасой <em>106, 107, 108</em></td><td>17 м²</td><td>5 м²</td><td><b>22 м²</b></td><td>2/4</td><td>Холодильник, кондиционер, чайник, фен, Wi-Fi, диван</td></tr>
-            <tr><td>Семейные апартаменты с кухней <em>105</em></td><td>22 м²</td><td>—</td><td><b>22 м²</b></td><td>3/4</td><td>ТВ, холодильник, кондиционер, чайник, микроволновка, плита, фен, Wi-Fi, диван</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="fund-note">Фен есть во всех номерах. Утюг — в апартаментах; в стандарт и улучшенный можно взять на ресепшене. Дети до 6 лет — бесплатно без предоставления дополнительного места. Манеж, раскладушки, посуда и приборы — по запросу.</p>
-    </div>
+    <p class="fund-note reveal" style="margin-top:34px">Фен есть во всех номерах. Утюг — в апартаментах; в стандарт и улучшенный можно взять на ресепшене. Дети до 6 лет — бесплатно без предоставления дополнительного места. Манеж, раскладушки, посуда и приборы — по запросу.</p>
   </div>
 </section>
 
@@ -1660,10 +1672,19 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu();
 /* ===== Шапка и плавающая кнопка при скролле ===== */
 const topbar = document.getElementById('topbar');
 const floatBook = document.getElementById('floatBook');
+let solid = false, ticking = false;
 const onScroll = () => {
-  const past = window.scrollY > window.innerHeight * 0.7;
-  topbar.classList.toggle('solid', window.scrollY > 40);
-  floatBook.classList.toggle('show', past && !isBookingVisible());
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY;
+    // гистерезис: шапка не переключается туда-сюда, когда iOS «пружинит» у верха
+    if (!solid && y > 60) { solid = true; topbar.classList.add('solid'); }
+    else if (solid && y < 20) { solid = false; topbar.classList.remove('solid'); }
+    const past = y > window.innerHeight * 0.7;
+    floatBook.classList.toggle('show', past && !isBookingVisible());
+    ticking = false;
+  });
 };
 function isBookingVisible(){
   const b = document.getElementById('booking').getBoundingClientRect();
@@ -1709,36 +1730,44 @@ const lbImg = document.getElementById('lbImg');
 const lbCap = document.getElementById('lbCap');
 let shots = [], idx = 0, roomName = '';
 
-const MAX_SHOTS = 8;              // больше 8 кадров гость всё равно не листает
-function probe(room, n, found, done){
-  if (n > MAX_SHOTS) return done(found);
-  const url = `assets/room-${room}-${n}.webp`;
-  const test = new Image();
-  test.onload = () => { found.push(url); probe(room, n + 1, found, done); };
-  test.onerror = () => done(found);
-  test.src = url;
+function preload(i){
+  const im = new Image();
+  im.src = shots[(i + shots.length) % shots.length];
 }
 function show(i){
   if (!shots.length) return;
   idx = (i + shots.length) % shots.length;
+  lb.classList.add('loading');
+  lbImg.onload = lbImg.onerror = () => lb.classList.remove('loading');
   lbImg.hidden = false;
   lbImg.src = shots[idx];
   lbImg.alt = roomName;
   lbCap.textContent = `${roomName} · ${idx + 1} из ${shots.length}`;
+  preload(idx + 1); preload(idx - 1);
 }
 document.querySelectorAll('.room-photo').forEach(btn => {
   btn.addEventListener('click', () => {
     const room = btn.dataset.room;
+    const count = parseInt(btn.dataset.shots || '1', 10);
     roomName = btn.querySelector('img').alt;
-    probe(room, 1, [], list => {
-      if (!list.length) return;               // фото ещё не залиты — просто ничего не делаем
-      shots = list;
-      show(0);
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
+    shots = Array.from({ length: count }, (_, i) => `assets/room-${room}-${i + 1}.webp`);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    show(0);
   });
 });
+/* свайп влево-вправо на телефоне */
+let tx = null, ty = null;
+lb.addEventListener('touchstart', e => {
+  const t = e.changedTouches[0]; tx = t.clientX; ty = t.clientY;
+}, { passive: true });
+lb.addEventListener('touchend', e => {
+  if (tx === null) return;
+  const t = e.changedTouches[0];
+  const dx = t.clientX - tx, dy = t.clientY - ty;
+  tx = ty = null;
+  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(idx + (dx < 0 ? 1 : -1));
+}, { passive: true });
 const closeLb = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
 document.getElementById('lbClose').onclick = closeLb;
 document.getElementById('lbPrev').onclick = () => show(idx - 1);
@@ -1754,7 +1783,6 @@ document.addEventListener('keydown', e => {
 /* ===== Переключатель языка (EN-версия — на /en/) ===== */
 document.getElementById('langBtn').onclick = () => {
   // Английская версия готовится: страница /en/ с переводом и hreflang.
-  alert('English version is coming soon. / Английская версия готовится.');
   // location.href = '/en/';
 };
 
