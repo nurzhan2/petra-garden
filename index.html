@@ -570,14 +570,20 @@ h3{font-size:clamp(1.2rem,2vw,1.5rem)}
   position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:18px;text-align:center;padding:30px;font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;color:var(--ink-soft);
 }
-@media(max-width:720px){.bnovo-wrap iframe{height:760px}}
+@media(max-width:720px){
+  /* модулю Bnovo нужна вся ширина экрана, иначе он ужимает карточки и режет фото */
+  .booking-box{padding:0 0 28px;margin:0 -18px;border-radius:0;box-shadow:none}
+  .bnovo-wrap{border-radius:0}
+  .bnovo-wrap iframe{height:800px}
+}
 @media(max-width:900px){.booking-grid{grid-template-columns:1fr}}
 
 /* ============ ПОДВАЛ ============ */
 footer{background:var(--ink);color:rgba(244,243,238,.75);padding:70px 0 130px;font-size:.9rem}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
 .foot-grid h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.foot-grid a{display:block;padding:4px 0}
+.foot-grid > div{min-width:0}
+.foot-grid a{display:block;padding:4px 0;overflow-wrap:anywhere}
 .foot-grid a:hover{color:var(--white)}
 footer .legal{margin-top:50px;padding-top:24px;border-top:1px solid rgba(244,243,238,.15);font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(244,243,238,.5);max-width:80ch}
@@ -1555,10 +1561,10 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
       <p style="margin-top:18px;color:rgba(244,243,238,.8)">Бронируя на сайте, вы платите меньше, чем на агрегаторах. Оплата защищена, подтверждение — мгновенно.</p>
       <div style="margin-top:22px;display:grid;gap:12px;font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;color:var(--gold)">
         <div>ПРОМОКОД WELCOME5 — СКИДКА 5% ПРИ ПРЯМОМ БРОНИРОВАНИИ</div>
+        <div>АКЦИЯ 3=2 — ТРЕТЬЯ НОЧЬ В ПОДАРОК</div>
         <div>−15% В ДЕНЬ РОЖДЕНИЯ + КОМПЛИМЕНТ ОТ ОТЕЛЯ</div>
-        <div>−20% ПРИ БРОНИ ЗА СУТКИ ДО ЗАЕЗДА</div>
       </div>
-      <p style="margin-top:14px;font-size:.8rem;color:rgba(244,243,238,.55)">Сроки действия акций уточняйте в отделе бронирования.</p>
+      <p style="margin-top:14px;font-size:.8rem;color:rgba(244,243,238,.55)">Условия и сроки акций уточняйте в отделе бронирования.</p>
     </div>
     <div class="booking-box reveal">
       <!-- ================= BNOVO =================
@@ -1689,10 +1695,11 @@ function isBookingVisible(){
 window.addEventListener('scroll', onScroll, { passive:true });
 onScroll();
 
-/* ===== Появление секций ===== */
+/* ===== Появление секций =====
+   без порога в процентах: список номеров на телефоне выше экрана в 9 раз и с threshold не появлялся */
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
-}), { threshold: .12 });
+}), { threshold: 0, rootMargin: '0px 0px -10% 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 /* ===== Модуль бронирования Bnovo: грузим при подходе к блоку ===== */
