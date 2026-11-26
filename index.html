@@ -411,6 +411,43 @@ h3{font-size:clamp(1.2rem,2vw,1.5rem)}
 .price small{font-family:var(--body);font-size:.75rem;color:var(--ink-soft)}
 .link-arrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--aegean);white-space:nowrap;margin-left:auto}
 .link-arrow::after{content:" →"}
+.room-more{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
+  background:none;border:1px solid var(--line);border-radius:99px;padding:9px 16px;cursor:pointer;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.room-more:hover{background:var(--ink);color:var(--stone);border-color:var(--ink)}
+
+/* окно «Подробнее» о номере */
+.rinfo{position:fixed;inset:0;z-index:95;background:rgba(10,20,18,.6);display:none;align-items:center;justify-content:center;padding:24px}
+.rinfo.open{display:flex}
+.rinfo-card{
+  background:var(--white);color:var(--ink);border-radius:var(--r);width:min(640px,100%);max-height:90vh;
+  overflow-y:auto;overscroll-behavior:contain;position:relative;animation:rinfoIn .25s ease;
+}
+@keyframes rinfoIn{from{opacity:0;transform:translateY(16px)}}
+.rinfo-photo{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;cursor:zoom-in}
+.rinfo-x{
+  position:absolute;top:12px;right:12px;width:42px;height:42px;border-radius:99px;border:0;cursor:pointer;
+  background:rgba(14,26,24,.55);color:var(--white);font-size:1rem;backdrop-filter:blur(3px);z-index:1;
+}
+.rinfo-body{padding:24px 26px 26px;display:flex;flex-direction:column;gap:16px}
+.rinfo-body h3{font-size:1.45rem}
+.rinfo-text p{color:var(--ink-soft);font-size:.95rem;line-height:1.6}
+.rinfo-text p+p{margin-top:8px}
+.rinfo-text dl{margin-top:18px;display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:.9rem}
+.rinfo-text dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-top:3px}
+.rinfo-text dd{color:var(--ink-soft)}
+.rinfo-actions{display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
+.rinfo-actions .btn{flex:1 1 180px;justify-content:center}
+.rinfo-photos{border:1px solid var(--line);color:var(--ink);background:none}
+@media(max-width:640px){
+  .rinfo{padding:0;align-items:flex-end}
+  .rinfo-card{border-radius:18px 18px 0 0;max-height:92vh}
+  .rinfo-body{padding:20px 18px 24px}
+  .rinfo-text dl{grid-template-columns:1fr;gap:2px}
+  .rinfo-text dd{margin-bottom:8px}
+}
 @media(max-width:960px){.rooms-grid{grid-template-columns:1fr;max-width:520px}}
 
 /* фото-заглушки (заменить на <img> WebP/AVIF) */
@@ -958,9 +995,20 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>терраса 81 м²</li><li>вид на море</li><li>лаундж-зона</li><li>ТВ, кресло, доп. кровать</li></ul>
           <div class="room-foot">
-            <div class="price">№ 109</div>
+            <button class="room-more" type="button" data-goal="room_info_109">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_109">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Панорамный люкс с лаундж-зоной на 2 этаже. Терраса с мебелью, двуспальная кровать, односпальная кровать и раскладное кресло.</p>
+          <p>Хороший выбор для семейного отдыха.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, утюг, шкаф, дополнительные подушки и одеяла, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, косметика, душ, фен</dd>
+            <dt>Кухня</dt><dd>холодильник, чайник</dd>
+            <dt>Техника</dt><dd>телевизор, Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>море, внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -982,9 +1030,20 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>терраса 58 м²</li><li>вид на море</li><li>лаундж-зона</li><li>кухня, стиральная машина, сейф</li></ul>
           <div class="room-foot">
-            <div class="price">№ 303</div>
+            <button class="room-more" type="button" data-goal="room_info_303">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_303">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Комфортные панорамные апартаменты на 2 этаже с лаундж-зоной, наполненные светом и оформленные в авторском стиле. Терраса с мебелью, кухня, спальня с двуспальной кроватью и гостиная.</p>
+          <p>С террасы открывается вид на море.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, сейф, утюг, шкаф, дополнительные подушки и одеяла, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, халаты, косметика, душ, фен, стиральная машина</dd>
+            <dt>Кухня</dt><dd>посуда для готовки, микроволновка, холодильник, столовые приборы, обеденный стол, кофе и чай, чайник</dd>
+            <dt>Техника</dt><dd>телевизор, Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>море, горы, внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1006,9 +1065,21 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>до 5 гостей</li><li>самый просторный номер</li><li>кухня и стиральная машина</li><li>ТВ, сейф, диван</li></ul>
           <div class="room-foot">
-            <div class="price">№ 301</div>
+            <button class="room-more" type="button" data-goal="room_info_301">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_301">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Комфортные панорамные апартаменты на 1 этаже с террасой. Терраса с мебелью, кухня, спальня с двуспальной кроватью и гостиная с обеденной зоной.</p>
+          <p>Из панорамных окон и с террасы открывается вид на парк.</p>
+          <p>Идеальны для длительного отдыха и путешественников, ценящих приватность и домашний комфорт.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, сейф, утюг, шкаф, дополнительные подушки и одеяла, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, халаты, косметика, душ, фен, стиральная машина</dd>
+            <dt>Кухня</dt><dd>посуда для готовки, микроволновка, холодильник, столовые приборы, обеденный стол, чайник</dd>
+            <dt>Техника</dt><dd>телевизор, Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>горы, внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1030,9 +1101,20 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>две комнаты</li><li>отдельный вход</li><li>плита и микроволновка</li><li>ТВ, утюг, диван</li></ul>
           <div class="room-foot">
-            <div class="price">№ 205, 206</div>
+            <button class="room-more" type="button" data-goal="room_info_205">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_205">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Комфортные двухкомнатные апартаменты с индивидуальным входом на 1 этаже. Терраса с мебелью, двуспальная кровать и раскладной диван. В номере есть кухня.</p>
+          <p>Хороший выбор для романтического и семейного отдыха.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, утюг, шкаф, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, косметика, душ, фен</dd>
+            <dt>Кухня</dt><dd>посуда для готовки, микроволновка, холодильник, столовые приборы, чайник</dd>
+            <dt>Техника</dt><dd>телевизор, Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>море, внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1054,9 +1136,20 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>терраса 25 м²</li><li>вид на море</li><li>плита и микроволновка</li><li>ТВ, утюг, диван</li></ul>
           <div class="room-foot">
-            <div class="price">№ 215, 216</div>
+            <button class="room-more" type="button" data-goal="room_info_216">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_216">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Комфортные двухкомнатные апартаменты с террасой на 2 этаже. Терраса с мебелью, двуспальная кровать, раскладной диван и кухня.</p>
+          <p>Хороший выбор для романтического и семейного отдыха.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, утюг, шкаф, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, косметика, душ, фен</dd>
+            <dt>Кухня</dt><dd>посуда для готовки, микроволновка, холодильник, столовые приборы, чайник</dd>
+            <dt>Техника</dt><dd>телевизор, Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>море, внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1078,9 +1171,21 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>до 4 гостей</li><li>вид на парк</li><li>кухня и стиральная машина</li><li>ТВ, сейф, диван</li></ul>
           <div class="room-foot">
-            <div class="price">№ 302</div>
+            <button class="room-more" type="button" data-goal="room_info_302">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_302">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Комфортные панорамные апартаменты на 1 этаже с террасой. Терраса с мебелью, кухня, спальня с двуспальной кроватью и гостиная с обеденной зоной.</p>
+          <p>Из панорамных окон и с террасы открывается вид на парк.</p>
+          <p>Идеальны для длительного отдыха и путешественников, ценящих приватность и домашний комфорт.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, сейф, утюг, шкаф, дополнительные подушки и одеяла, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, халаты, душ, фен, стиральная машина</dd>
+            <dt>Кухня</dt><dd>посуда для готовки, микроволновка, холодильник, столовые приборы, обеденный стол, кофе и чай, чайник</dd>
+            <dt>Техника</dt><dd>телевизор, Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>горы, внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1102,9 +1207,20 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>две комнаты</li><li>для семьи</li><li>плита и микроволновка</li><li>ТВ, утюг, диван</li></ul>
           <div class="room-foot">
-            <div class="price">№ 101, 104</div>
+            <button class="room-more" type="button" data-goal="room_info_104">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_104">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Комфортные семейные апартаменты с террасой на 1 и 2 этаже. Терраса с мебелью, двуспальная кровать, раскладной диван и кухня.</p>
+          <p>Хороший выбор для семейного отдыха.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, утюг, шкаф, дополнительные подушки и одеяла, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, косметика, душ, фен</dd>
+            <dt>Кухня</dt><dd>посуда для готовки, микроволновка, холодильник, столовые приборы, обеденный стол, чайник</dd>
+            <dt>Техника</dt><dd>телевизор, Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>море, горы, внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1126,9 +1242,20 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>2 гостя</li><li>отдельный вход</li><li>терраса 10 м²</li><li>холодильник, чайник, фен</li></ul>
           <div class="room-foot">
-            <div class="price">№ 201–204, 207–210</div>
+            <button class="room-more" type="button" data-goal="room_info_204">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_204">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Уютный номер с индивидуальным входом и террасой на 1 этаже, наполненный светом и оформленный в авторском стиле. В номере: двуспальная кровать, кондиционер и холодильник.</p>
+          <p>Идеальное пространство для спокойного отдыха вдвоём или в одиночестве.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, шкаф, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, косметика, душ, фен</dd>
+            <dt>Кухня</dt><dd>холодильник, чайник</dd>
+            <dt>Техника</dt><dd>Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1150,9 +1277,20 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>2 гостя</li><li>терраса 10 м²</li><li>кондиционер</li><li>холодильник, чайник, фен</li></ul>
           <div class="room-foot">
-            <div class="price">№ 211–214, 217–220</div>
+            <button class="room-more" type="button" data-goal="room_info_213">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_213">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Уютный номер с террасой на 2 этаже, наполненный светом и оформленный в авторском стиле. В номере: двуспальная кровать, кондиционер и холодильник.</p>
+          <p>Идеальное пространство для спокойного отдыха вдвоём или в одиночестве.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, шкаф, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, косметика, душ, фен</dd>
+            <dt>Кухня</dt><dd>холодильник, чайник</dd>
+            <dt>Техника</dt><dd>Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1174,9 +1312,20 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>до 4 гостей</li><li>отдельный вход</li><li>терраса</li><li>холодильник, чайник, фен</li></ul>
           <div class="room-foot">
-            <div class="price">№ 102, 103</div>
+            <button class="room-more" type="button" data-goal="room_info_102">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_102">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Улучшенный номер с индивидуальным входом и частной террасой на 1 этаже. В номере: двуспальная кровать, раскладной диван, кондиционер и холодильник.</p>
+          <p>Хороший выбор для романтического отдыха или спокойного утреннего кофе на свежем воздухе.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, шкаф, москитная сетка, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, косметика, душ, фен</dd>
+            <dt>Кухня</dt><dd>холодильник, столовые приборы, чайник</dd>
+            <dt>Техника</dt><dd>Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>горы, внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1198,9 +1347,19 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>до 4 гостей</li><li>диван</li><li>терраса</li><li>холодильник, чайник, фен</li></ul>
           <div class="room-foot">
-            <div class="price">№ 106, 107, 108</div>
+            <button class="room-more" type="button" data-goal="room_info_106">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_106">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Уютный номер с террасой на 2 этаже, наполненный светом и оформленный в авторском стиле. В номере: двуспальная кровать, раскладной диван, кондиционер и холодильник.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, шкаф, москитная сетка, терраса с мебелью</dd>
+            <dt>Ванная</dt><dd>свой санузел, косметика, душ, фен</dd>
+            <dt>Кухня</dt><dd>холодильник, чайник</dd>
+            <dt>Техника</dt><dd>Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>горы, внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1221,9 +1380,20 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
           </div>
           <ul><li>до 4 гостей</li><li>полноценная кухня</li><li>плита, микроволновка</li><li>ТВ, диван</li></ul>
           <div class="room-foot">
-            <div class="price">№ 105</div>
+            <button class="room-more" type="button" data-goal="room_info_105">Подробнее</button>
             <a class="link-arrow" href="#booking" data-goal="room_105">Забронировать</a>
           </div>
+        </div>
+        <div class="room-info" hidden>
+          <p>Уютный номер для всей семьи, площадью 22 м²: просторная спальня, зона отдыха с диваном, вместительная ванная комната.</p>
+          <p>В номере: двуспальная кровать и раскладной диван, кондиционер, холодильник и телевизор. В номере есть кухня. Комфортный выбор для путешествия с детьми.</p>
+          <dl>
+            <dt>В номере</dt><dd>кондиционер, утюг, шкаф, москитная сетка</dd>
+            <dt>Ванная</dt><dd>свой санузел, косметика, душ, фен</dd>
+            <dt>Кухня</dt><dd>посуда для готовки, микроволновка, холодильник, столовые приборы, обеденный стол, чайник</dd>
+            <dt>Техника</dt><dd>телевизор, Wi-Fi</dd>
+            <dt>Вид из окна</dt><dd>внутренний двор, сад и лес</dd>
+          </dl>
         </div>
       </article>
 
@@ -1654,6 +1824,22 @@ footer .requisites{margin-top:18px;font-size:.72rem;line-height:1.7;color:rgba(2
   </a>
 </div>
 
+<div class="rinfo" id="rinfo" role="dialog" aria-modal="true" aria-labelledby="rinfoTitle">
+  <div class="rinfo-card">
+    <button class="rinfo-x" id="rinfoClose" type="button" aria-label="Закрыть">✕</button>
+    <img class="rinfo-photo" id="rinfoPhoto" alt="">
+    <div class="rinfo-body">
+      <h3 id="rinfoTitle"></h3>
+      <div class="area" id="rinfoArea"></div>
+      <div class="rinfo-text" id="rinfoText"></div>
+      <div class="rinfo-actions">
+        <button class="btn rinfo-photos" id="rinfoPhotos" type="button">Смотреть фото</button>
+        <a class="btn btn-gold" id="rinfoBook" href="#booking">Забронировать</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Галерея номера">
   <button class="lb-close" id="lbClose" aria-label="Закрыть">✕</button>
   <button class="lb-prev" id="lbPrev" aria-label="Предыдущее фото">‹</button>
@@ -1782,6 +1968,33 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') show(idx - 1);
   if (e.key === 'ArrowRight') show(idx + 1);
 });
+
+/* ===== «Подробнее» о номере: текст берётся из скрытого .room-info в карточке ===== */
+const ri = document.getElementById('rinfo');
+let riCard = null;
+const closeRi = () => { ri.classList.remove('open'); if (!lb.classList.contains('open')) document.body.style.overflow = ''; };
+document.querySelectorAll('.room-more').forEach(btn => {
+  btn.addEventListener('click', () => {
+    riCard = btn.closest('.room');
+    const ph = riCard.querySelector('.room-photo');
+    document.getElementById('rinfoTitle').textContent = riCard.querySelector('h3').textContent;
+    document.getElementById('rinfoArea').innerHTML = riCard.querySelector('.area').innerHTML;
+    document.getElementById('rinfoText').innerHTML = riCard.querySelector('.room-info').innerHTML;
+    const img = document.getElementById('rinfoPhoto');
+    img.src = `assets/room-${ph.dataset.room}-1.webp`;
+    img.alt = ph.querySelector('img').alt;
+    ri.classList.add('open');
+    ri.querySelector('.rinfo-card').scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  });
+});
+const riPhotos = () => { closeRi(); riCard.querySelector('.room-photo').click(); };
+document.getElementById('rinfoPhotos').onclick = riPhotos;
+document.getElementById('rinfoPhoto').onclick = riPhotos;
+document.getElementById('rinfoClose').onclick = closeRi;
+document.getElementById('rinfoBook').addEventListener('click', closeRi);
+ri.addEventListener('click', e => { if (e.target === ri) closeRi(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && ri.classList.contains('open')) closeRi(); });
 
 /* ===== Переключатель языка (EN-версия — на /en/) ===== */
 document.getElementById('langBtn').onclick = () => {
